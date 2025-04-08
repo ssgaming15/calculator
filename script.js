@@ -1,82 +1,66 @@
-/* General Body Styling */
-body {
-    background-color: #1e1e2e;
-    font-family: 'Poppins', sans-serif;
-    color: #f3f547;
-    margin: 0;
-    padding: 0;
+let history = [];
+
+function appendValue(value) {
+    document.getElementById('result').value += value;
 }
 
-/* Calculator Container */
-.calculator {
-    width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #2e2e3e;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-    text-align: center;
+function clearResult() {
+    document.getElementById('result').value = '';
 }
 
-/* Display Styling */
-.display input {
-    width: 90%;
-    padding: 15px;
-    font-size: 24px;
-    border: none;
-    background: #43434f;
-    color: #f3f547;
-    text-align: right;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    outline: none;
+function performOperation(operator) {
+    document.getElementById('result').value += ` ${operator} `;
 }
 
-/* Button Grid Styling */
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+function performUnaryOperation(operation) {
+    const value = parseFloat(document.getElementById('result').value);
+    if (operation === 'sqrt') {
+        document.getElementById('result').value = Math.sqrt(value);
+    }
+    addToHistory(`${operation}(${value})`);
 }
 
-/* Button Styling */
-.buttons button {
-    background: #3b4049;
-    border: none;
-    border-radius: 10px;
-    color: #f3f547;
-    font-size: 18px;
-    padding: 15px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+function calculateResult() {
+    try {
+        const expression = document.getElementById('result').value;
+        const result = eval(expression.replace('^', '**')); // Replace ^ with JS syntax
+        document.getElementById('result').value = result;
+        addToHistory(`${expression} = ${result}`);
+    } catch {
+        alert('Invalid Expression');
+    }
 }
 
-.buttons button:hover {
-    background: #55555f;
+function addToHistory(entry) {
+    history.push(entry);
+    const historyList = document.getElementById('history');
+    const listItem = document.createElement('li');
+    listItem.textContent = entry;
+    historyList.appendChild(listItem);
 }
 
-/* History Section */
-.history {
-    margin-top: 20px;
-    padding: 10px;
-    background: #2e2e3e;
-    border-radius: 10px;
+function openUnitConverter() {
+    document.getElementById('unitConverter').style.display = 'block';
 }
 
-.history h2 {
-    font-size: 18px;
-    color: #f3f547;
-}
+function performConversion() {
+    const inputValue = parseFloat(document.getElementById('unitInput').value);
+    const conversionType = document.getElementById('conversionType').value;
 
-.history ul {
-    list-style: none;
-    padding: 0;
-    color: #f3f547;
-}
+    let result = 0;
+    if (conversionType === 'metersToFeet') {
+        result = inputValue * 3.28084;
+    } else if (conversionType === 'feetToMeters') {
+        result = inputValue / 3.28084;
+    } else if (conversionType === 'kgToPounds') {
+        result = inputValue * 2.20462;
+    } else if (conversionType === 'poundsToKg') {
+        result = inputValue / 2.20462;
+    } else if (conversionType === 'celsiusToFahrenheit') {
+        result = (inputValue * 9/5) + 32;
+    } else if (conversionType === 'fahrenheitToCelsius') {
+        result = (inputValue - 32) * 5/9;
+    }
 
-.unit-converter {
-    margin-top: 20px;
-    padding: 15px;
-    background: #2e2e3e;
-    border-radius: 10px;
+    document.getElementById('unitResult').value = result;
 }
