@@ -1,54 +1,71 @@
+/* General Body Styling */
 body {
     background-color: #1e1e2e;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #f3f547;
     margin: 0;
     padding: 0;
 }
 
+/* Calculator Container */
 .calculator {
-    width: 350px;
+    width: 400px;
     margin: 50px auto;
-    text-align: center;
-    background: #2e2e3e;
-    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    background: #2e2e3e;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
+/* Display Styling */
 .display input {
     width: 90%;
-    padding: 10px;
+    padding: 15px;
     font-size: 24px;
     border: none;
     background: #43434f;
     color: #f3f547;
-    border-radius: 5px;
-    margin-bottom: 20px;
     text-align: right;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    outline: none;
 }
 
+/* Button Grid Styling */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+/* Button Styling */
 .buttons button {
-    background: #43434f;
+    background: #3b4049;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     color: #f3f547;
     font-size: 18px;
-    padding: 10px;
-    margin: 5px;
-    width: 60px;
+    padding: 15px;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .buttons button:hover {
     background: #55555f;
 }
 
+/* History Section */
 .history {
     margin-top: 20px;
-    background: #2e2e3e;
     padding: 10px;
-    border-radius: 5px;
+    background: #2e2e3e;
+    border-radius: 10px;
+}
+
+.history h2 {
+    font-size: 18px;
+    color: #f3f547;
 }
 
 .history ul {
@@ -59,6 +76,7 @@ body {
 
 .unit-converter {
     margin-top: 20px;
-    text-align: center;
-    padding: 10px;
+    padding: 15px;
+    background: #2e2e3e;
+    border-radius: 10px;
 }
