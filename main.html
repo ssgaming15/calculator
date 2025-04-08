@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="result" readonly>
+        </div>
+        <div class="buttons">
+            <!-- Calculator Buttons -->
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="performOperation('/')">/</button>
+            <button onclick="clearResult()">C</button>
+
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="performOperation('*')">*</button>
+            <button onclick="performUnaryOperation('sqrt')">√</button>
+
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="performOperation('-')">-</button>
+            <button onclick="performOperation('^')">^</button>
+
+            <button onclick="appendValue('0')">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="performOperation('+')">+</button>
+            <button onclick="openUnitConverter()">Convert</button>
+        </div>
+        <div class="history">
+            <h2>History</h2>
+            <ul id="history"></ul>
+        </div>
+    </div>
+
+    <!-- Unit Converter -->
+    <div class="unit-converter" id="unitConverter" style="display: none;">
+        <h2>Unit Converter</h2>
+        <select id="conversionType">
+            <option value="metersToFeet">Meters to Feet</option>
+            <option value="feetToMeters">Feet to Meters</option>
+            <option value="kgToPounds">Kg to Pounds</option>
+            <option value="poundsToKg">Pounds to Kg</option>
+            <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+            <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+        </select>
+        <input type="text" id="unitInput" placeholder="Enter value">
+        <button onclick="performConversion()">Convert</button>
+        <input type="text" id="unitResult" readonly>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
